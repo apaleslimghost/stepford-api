@@ -7,8 +7,14 @@ app.use(morgan('dev'));
 app.use(function(req, res, next) {
 	res.set('access-control-allow-origin', req.headers.origin);
 	res.set('access-control-allow-credentials', true);
+	res.set('access-control-allow-headers', req.headers['access-control-request-headers']);
+	res.set('access-control-allow-method', '*');
 	next();
 });
+app.use(function(req, res, next) {
+	if(req.method !== 'OPTIONS') return next();
+	res.sendStatus(204);
+})
 app.use(require('express-pouchdb')(require('./db').PouchDB));
 
 updCron.start();
