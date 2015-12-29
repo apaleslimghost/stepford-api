@@ -15,7 +15,7 @@ function toObject(transactions) {
 }
 
 function hashTx(tx) {
-	return hash(pick(tx, ['date', 'payee', 'amount']));
+	return new Date(tx.date).toISOString() + '-' + hash(pick(tx, ['date', 'payee', 'amount']));
 }
 
 module.exports = function(options) {
