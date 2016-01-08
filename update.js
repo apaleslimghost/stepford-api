@@ -1,6 +1,4 @@
 var stepford = require('stepford');
-var db = require('./db').db;
-var config = require('./config.json');
 var pick = require('lodash.pick');
 var max = require('lodash.max');
 var hash = require('object-hash');
@@ -18,10 +16,8 @@ function hashTx(tx) {
 	return new Date(tx.date).toISOString() + '-' + hash(pick(tx, ['date', 'payee', 'amount']));
 }
 
-module.exports = function(options) {
-	config.silent = !(options && options.log);
-
-	db.allDocs({include_docs: true}).then(function(result) {
+module.exports = function(db, config) {
+	return db.allDocs({include_docs: true}).then(function(result) {
 		var currentTx = result.rows.map(r => r.doc);
 		var currentTxObj = toObject(currentTx);
 		var latest = max(currentTx, function(tx) {
@@ -38,9 +34,15 @@ module.exports = function(options) {
 				return db.put(tx, id, currentTxObj[id] && currentTxObj[id]._rev);
 			}));
 		});
-	}).catch(function(err) {
-		console.error(err.stack);
 	});
 };
 
-if(require.main === module) module.exports({log: true});
+if(require.main === module) {
+	module.exports(
+		require('./db').db,
+		Object.assign(require('./config.json'), {silent: false})
+	).catch(function(err) {
+		console.error(err.stack);
+		process.exit(1);
+	});
+}
