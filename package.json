@@ -16,7 +16,7 @@
     "start": "node index.js"
   },
   "name": "stepford-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A (P|C)ouchDB wrapper for Stepford",
   "main": "index.js",
   "devDependencies": {},
