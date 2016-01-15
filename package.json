@@ -14,5 +14,27 @@
   },
   "scripts": {
     "start": "node index.js"
-  }
+  },
+  "name": "stepford-api",
+  "version": "1.0.0",
+  "description": "A (P|C)ouchDB wrapper for Stepford",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quarterto/stepford-api.git"
+  },
+  "keywords": [
+    "stepford",
+    "scrape",
+    "smile",
+    "banking",
+    "bank"
+  ],
+  "author": "Matt Brennan <matt@153.io> (http://blog.153.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/quarterto/stepford-api/issues"
+  },
+  "homepage": "https://github.com/quarterto/stepford-api#readme"
 }
