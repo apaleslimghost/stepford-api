@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@quarterto/express-cors-wide-open": "^1.0.0",
+    "@quarterto/options-204": "^1.0.0",
     "cron": "^1.1.0",
     "express": "^4.13.3",
     "express-pouchdb": "^1.0.1",
