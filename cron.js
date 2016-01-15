@@ -1,7 +1,6 @@
 var Cron = require('cron').CronJob;
 var updateDb = require('./update');
 var db = require('./db').db;
-var config = require('./config.json');
 
 var every2Hours = '0 */2 * * *';
 
