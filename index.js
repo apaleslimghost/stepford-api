@@ -9,10 +9,11 @@ app.use(corsOpen);
 app.use(options204);
 app.use(require('express-pouchdb')(require('./db').PouchDB));
 
-updCron.start();
 
 if(module === require.main) {
 	var port = process.env.PORT || 3001;
+
+	updCron.start();
 	app.use(morgan('dev'));
 	app.listen(port, console.log.bind(console, `listening on ${port}`));
 } else module.exports = app;
